@@ -1,5 +1,37 @@
 "use strict";
 
+{
+const optArticleSelector = '.post',
+    optTitleSelector = '.post-title',
+    optTitleListSelector = '.titles';
+
+const generateTitleLinks = function () {
+    console.log('Wywołanie funkcji generateTitleLinks');
+
+    /* clear links list in aside section */
+
+    const titleList = document.querySelector(optTitleListSelector);
+    console.log('titleList: ', titleList);
+
+    titleList.innerHTML='';
+    console.log('Titles cleared');
+
+    /* for each article */
+
+    /* get the article id */
+
+    /* find the title element */
+
+    /* get the title from the title element */
+
+    /* create HTML of the link */
+
+    /* insert link into titleList */
+
+}
+
+generateTitleLinks();
+
 const titleClickHandler = function(event) {
     event.preventDefault();
     const clickedElement = this;
@@ -36,7 +68,4 @@ for (let link of links) {
     link.addEventListener('click', titleClickHandler);
 }
 
-/* document.getElementById('test-button').addEventListener('click', function(){
-    
-    console.log('links:', links);
-}); */
+}
