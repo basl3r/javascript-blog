@@ -15,13 +15,25 @@ $font-text: 'Source Sans Pro', sans-serif;
     box-sizing: border-box;
 }
 
+html {
+    background-image: url('/images/bg.png');
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
 body {
-    background: $color-light;
     font-family: $font-text;
     color: $color-dark;
     font-weight: 300;
     font-size: 16px;
     line-height: 1.7;
+}
+
+a,
+a:link {
+    text-decoration: none;
+    color: inherit;
 }
 
 .container {
@@ -101,10 +113,23 @@ body {
 
 /* Post */
 
+.posts {
+    position: relative;
+}
+
 .post {
-    display: none;
+    display: block;
+    opacity: 0;
+    transition: opacity 400ms linear;
+    z-index: 1;
+    position: absolute;
+    top: 40px;
     &.active {
     display: block;
+    opacity: 1;
+    z-index: 100;
+    position: relative;
+    top: 0px;
     }
 }
 
