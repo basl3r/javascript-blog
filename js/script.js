@@ -1,3 +1,4 @@
+
 /* eslint-disable no-inner-declarations */
 'use strict';
 
@@ -5,7 +6,9 @@
   const optArticleSelector = '.post',
     optTitleSelector = '.post-title',
     optTitleListSelector = '.titles',
+    optArticleAuthorSelector = '.post-author',
     optArticleTagsSelector = '.post-tags .list';
+
 
   const titleClickHandler = function(event) {
     event.preventDefault();
@@ -171,4 +174,35 @@
   }
   
   addClickListenersToTags();
+
+  function generateAuthors() {
+    console.log('Wywolanie generateAuthors');
+
+    /* find all articles */
+    const allArticles = document.querySelectorAll('article');
+    console.log('Zawartosc allArticles: ', allArticles);
+    /* loop for every article */ 
+    for (let article of allArticles) {
+      /* find authors wrapper */
+      const authWrapper = article.querySelector(optArticleAuthorSelector);
+      console.log('Author wrappper: ', authWrapper);
+      /* make html variable with empty string */
+      let html = '';
+      /* get tags from data-author attribute */
+      const dataAuthor = article.getAttribute('data-author');
+      console.log('dataAuthor = ', dataAuthor);
+      html += 'by ' + dataAuthor;
+      console.log(html);
+      /* insert HTML author wrapper */
+      authWrapper.innerHTML = html;
+    }
+  }
+
+  generateAuthors();
+
+  // function authorClickHandler(event){}
+
+  // function addClickListenersToAuthors(){}
+
+
 }
