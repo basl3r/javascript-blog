@@ -7,7 +7,8 @@
     optTitleSelector = '.post-title',
     optTitleListSelector = '.titles',
     optArticleAuthorSelector = '.post-author',
-    optArticleTagsSelector = '.post-tags .list';
+    optArticleTagsSelector = '.post-tags .list',
+    optTagsListSelector = '.tags.list';
 
 
   const titleClickHandler = function(event) {
@@ -91,6 +92,8 @@
 
   function generateTags() {
     console.log('Wywolanie generateTags');
+    /* [NEW] create a new variable allTags with an empty array */
+    let allTags = [];
     /* [DONE] find all articles */
     const allArticles = document.querySelectorAll('article');
     console.log('Zawartosc allArticles: ', allArticles);
@@ -116,6 +119,11 @@
           /* add generated code to html variable */
           html = html + ' ' + linkHTML; 
           console.log('HTML - ', html);
+          /* [NEW] check if this link is NOT already in allTags */
+          if(allTags.indexOf(linkHTML) == -1){
+          /* [NEW] add generated code to allTags array */
+            allTags.push(linkHTML);
+          }
         /* END LOOP: for each tag */
         }
         /* insert HTML of all the links into the tags wrapper */
@@ -123,6 +131,13 @@
         tagsWrapper.innerHTML = html;
         /* END LOOP: for every article: */
       }
+      /* [NEW] find list of tags in right column */
+      const tagList = document.querySelector(optTagsListSelector);
+      console.log('optTagsListSelector', optTagsListSelector);
+
+      /* [NEW] add html from allTags to tagList */
+      tagList.innerHTML = allTags.join(' ');
+      
     }
   }
   generateTags();
