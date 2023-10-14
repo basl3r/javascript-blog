@@ -11,6 +11,7 @@
     optArticleTagsSelector = '.post-tags .list',
     optCloudClassCount = 5,
     optCloudClassPrefix = 'tag-size-',
+    optAuthorsListSelector = '.authors.list',
     optTagsListSelector = '.tags.list';
 
 
@@ -235,7 +236,7 @@
 
   function generateAuthors() {
     console.log('Wywolanie generateAuthors');
-
+    let allAuthors = {};
     /* find all articles */
     const allArticles = document.querySelectorAll('article');
     console.log('Zawartosc allArticles: ', allArticles);
@@ -252,11 +253,28 @@
       
       const linkHTML = '<a href="#author-' + dataAuthor + '"> by ' + dataAuthor + '</a>';
       
+      if(!allAuthors[dataAuthor]){
+        /* [NEW] add generated code to allTags object */
+        allAuthors[dataAuthor] = 1;
+      } else {
+        allAuthors[dataAuthor]++;
+      }
+
       html += linkHTML;
       console.log(html);
       /* insert HTML author wrapper */
       authWrapper.innerHTML = html;
     }
+    const authorList = document.querySelector(optAuthorsListSelector);
+    console.log('authorList = ', authorList);
+    console.log('allAuthors = ', allAuthors);
+
+    let allAuthorsHTML = '';
+    for (let author in allAuthors) {
+      allAuthorsHTML += '<li><a href="#author-' + author + '"><span>' + author + ` (${allAuthors[author]})` + '</span></a></li>';
+      console.log('allAuthorsHTML = ', allAuthorsHTML);
+    }
+    authorList.innerHTML= allAuthorsHTML;
   }
 
   generateAuthors();
@@ -273,9 +291,9 @@
     const author = href.replace('#author-', '');
     console.log('author: ', author);
     /* find all author links with class active */
-    const activeAuthorLinks = document.querySelectorAll('a.active[href^="#tag-"]');
+    const activeAuthorLinks = document.querySelectorAll('a.active[href^="#author-"]');
     console.log('activeAuthorLinks: ', activeAuthorLinks);
-    /* for each active tag link and remove class active */
+    /* for each active author link and remove class active */
     for (let activeLink of activeAuthorLinks) {
       activeLink.classList.remove('active');
     }
@@ -294,7 +312,7 @@
 
   function addClickListenersToAuthors(){
     /* find all links to authors */
-    const links = document.querySelectorAll('.post-author a');
+    const links = document.querySelectorAll('a[href^="#author-"]');
     console.log(links);
     /* loop for each link */
     for (let link of links)
