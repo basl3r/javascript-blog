@@ -21,6 +21,9 @@ module.exports = {
     'ecmaVersion': 'latest',
     'sourceType': 'module'
   },
+  'globals': {
+    'Handlebars': false
+  },
   'rules': {
     'indent': [
       'error',
