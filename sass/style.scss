@@ -143,3 +143,41 @@ a:link {
     margin: 0 10px 0 0;
     }
 }
+
+/* Tags */
+.sidebar ul.tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0;
+    line-height: 2.5rem;
+    gap: 2px;
+}
+
+.tag-size-1 {
+    font-size: 100%;
+    color: #89a7a7;
+}
+
+.tag-size-2 {
+    font-size: 125%;
+    color: #2a9d8f;
+}
+
+.tag-size-3 {
+    font-size: 150%;
+    color: #2a9d8f;
+}
+
+.tag-size-4 {
+    font-size: 200%;
+    font-weight: bold;
+    color: #4a5859;
+}
+
+.tag-size-5 {
+    font-size: 250%;
+    font-weight: bold;
+    color: #210124;
+}
